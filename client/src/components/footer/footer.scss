@@ -1,0 +1,32 @@
+@import '../../colors.scss';
+
+.footer {
+  width: 100%;
+  font-size: 12px;
+  // padding: 0 150px;
+
+  .fText {
+    padding: 0 150px;
+    margin-bottom: 50px;
+  }
+  .lists {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 150px;
+
+    .list {
+      // background-color: rebeccapurple;
+      margin-right: 5px;
+      flex: 1;
+      list-style: none;
+      padding: 0;
+
+      .listItem {
+        margin-bottom: 10px;
+        color: $background-primary;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+// $text-primary: #0f0f0f;
+$text-primary: #030303;
+$text-secondary: #606060;
+
+$background-primary: #003580;
+$background-secondary: #dddddd;
+
+$button-background: #0657c7;
+
+@mixin theme($theme: DarkGray) {
+  background: $theme;
+  box-shadow: 0 0 1px rgba($theme, 0.25);
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

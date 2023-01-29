@@ -1,0 +1,156 @@
+@import '../../colors.scss';
+
+.header {
+  background-color: $background-primary;
+  // background-color: rgb(246, 89, 89);
+  display: flex;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px 150px 20px;
+  position: relative;
+
+  .items {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    .item {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      &.active {
+        border: 1px solid white;
+        padding: 10px;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  .title {
+    font-size: 2rem;
+    margin: 20px 0 20px;
+  }
+
+  .btn {
+    background-color: $button-background;
+    color: white;
+    padding: 10px;
+    display: flex;
+    border: none;
+    margin: 35px 0;
+  }
+
+  .search {
+    padding: 10px 20px;
+    border: 3px solid gold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // width: 100%;
+    background-color: white;
+    color: gray;
+    border-radius: 5px;
+    position: absolute;
+    bottom: -40px;
+    // width: 100%;
+    left: 150px;
+    right: 150px;
+    z-index: 5;
+
+    .item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.5s ease;
+
+      .result {
+        display: flex;
+        gap: 10px;
+
+        span {
+          display: flex;
+
+          gap: 30px;
+        }
+      }
+
+      .date {
+        position: absolute;
+        top: 40px;
+        left: 0;
+      }
+      input {
+        padding: 10px;
+        border: none;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .options {
+        transition: visibility 1s, opacity 1s linear;
+        position: absolute;
+        // background-color: rebeccapurple;
+        top: 40px;
+        left: 0;
+        width: 200px;
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 4px 7px 11px -5px rgba(0, 0, 0, 0.89);
+        -webkit-box-shadow: 4px 7px 11px -5px rgba(0, 0, 0, 0.89);
+        -moz-box-shadow: 4px 7px 11px -5px rgba(0, 0, 0, 0.89);
+        z-index: 5;
+        background-color: white;
+
+        .option {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .title {
+            font-size: 18px;
+          }
+
+          div > .counter {
+            width: 20px;
+            color: blue;
+            width: 20px;
+            text-align: center;
+            display: inline-block;
+            font-size: 12px;
+          }
+          div > button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid $button-background;
+            color: $button-background;
+            background-color: white;
+            cursor: pointer;
+          }
+          div > button:disabled {
+            cursor: not-allowed;
+          }
+        }
+      }
+      //https://box-shadow.dev/
+      // box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    button.btn-search {
+      padding: 10px;
+      background-color: $button-background;
+      color: white;
+      cursor: pointer;
+      margin: 0;
+      border: none;
+    }
+  }
+}

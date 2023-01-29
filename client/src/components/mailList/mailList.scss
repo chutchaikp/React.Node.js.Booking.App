@@ -1,0 +1,40 @@
+@import '../../colors.scss';
+
+.mailList {
+  width: 100%;
+  margin-top: 50px;
+  background-color: $background-primary;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  gap: 10px;
+
+  .title {
+    font-size: 30px;
+  }
+  .desc {
+    font-size: 20px;
+  }
+  .inputContainer {
+    margin-top: 20px;
+
+    input {
+      padding: 10px;
+      border: none;
+      width: 300px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      padding: 10px;
+      background-color: $button-background;
+      color: white;
+      border: none;
+    }
+  }
+}
