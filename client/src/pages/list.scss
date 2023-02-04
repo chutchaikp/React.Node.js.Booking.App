@@ -1,0 +1,83 @@
+@import '../colors.scss';
+
+.list-search {
+  flex: auto;
+  margin: 0 150px;
+  display: flex;
+  gap: 20px;
+
+  .search {
+    flex: 1;
+    background-color: gold;
+    margin: 20px 0 20px;
+    border-radius: 10px;
+    padding: 5px 20px;
+    position: sticky;
+    top: 10px;
+    height: fit-content;
+    padding-bottom: 20px;
+
+    .destination,
+    .checking-date {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+
+      position: relative;
+
+      input {
+        padding: 10px;
+        border: none;
+      }
+      .date-span {
+        padding: 10px;
+        background-color: white;
+      }
+      .date {
+        position: absolute;
+        top: 62px;
+        left: 0;
+      }
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      .option {
+        display: flex;
+        margin-top: 10px;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+          width: 55px;
+          padding: 3px;
+          // border: none;
+        }
+        span {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .btn {
+      border: none;
+      color: white;
+      background-color: $button-background;
+      padding: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      border-radius: 5px;
+      width: 100%;
+      margin-top: 20px;
+      font-weight: bold;
+      justify-content: center;
+    }
+  }
+
+  .result {
+    flex: 3;
+    margin: 20px 0 20px;
+  }
+}

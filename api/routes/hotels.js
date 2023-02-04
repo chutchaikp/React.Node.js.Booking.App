@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { createHotel, deleteHotel, getHotel, getHotels, updateHotel } from '../controllers/hotel.js';
+import { countByCity, countByType, createHotel, deleteHotel, getHotel, getHotels, promise, updateHotel } from '../controllers/hotel.js';
 import { verifyAdmin, verifyUser } from '../utils/verifyToken.js';
 
 const router = Router()
@@ -14,9 +14,14 @@ router.put('/:id', verifyAdmin, updateHotel)
 router.delete('/:id', verifyAdmin, deleteHotel)
 
 // GET A
-router.get('/:id', verifyUser, getHotel)
+router.get('/find/:id', getHotel)
 
 // GET ALL
-router.get('/', verifyUser, getHotels)
+router.get('/', getHotels)
+
+router.get('/countByCity', countByCity)
+router.get('/countByType', countByType)
+
+// router.get('/promise', promise)
 
 export default router;

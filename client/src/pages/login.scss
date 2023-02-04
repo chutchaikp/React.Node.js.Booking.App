@@ -1,0 +1,23 @@
+.login {
+  display: flex;
+  height: 100vh;
+
+  justify-content: center;
+  align-items: center;
+
+  form {
+    background-color: rgb(211, 211, 211);
+    width: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    input {
+      padding: 10px;
+    }
+    button {
+      padding: 10px;
+    }
+  }
+}

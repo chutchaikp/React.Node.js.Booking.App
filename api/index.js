@@ -10,7 +10,7 @@ import roomRoute from './routes/rooms.js'
 import userRoute from './routes/users.js'
 
 const app = express()
-const port = 4000
+const port = 8800
 dotenv.config();
 
 // mongodb connect

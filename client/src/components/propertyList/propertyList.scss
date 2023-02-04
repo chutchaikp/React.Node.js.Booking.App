@@ -1,6 +1,6 @@
 .propertyList {
   width: 100%;
-  min-width: 1024px;
+  // min-width: 1024px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -18,6 +18,7 @@
 
     .title > h1 {
       font-size: 18px;
+      text-transform: capitalize;
     }
     .title > h2 {
       font-size: 14px;

@@ -1,0 +1,168 @@
+@import '../colors.scss';
+
+.hotel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  justify-content: center;
+  align-items: center;
+
+  .wrapper {
+    margin: 20px 150px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .bookNow {
+      position: absolute;
+      top: 10px;
+      right: 0;
+      border: none;
+      font-weight: bold;
+      background-color: $button-background;
+      padding: 10px 20px;
+      color: white;
+      font-size: 16px;
+    }
+
+    .address {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 300;
+    }
+    .distance {
+      color: $button-background;
+      font-size: 16px;
+    }
+    .priceHighlight {
+      color: green;
+      font-size: 16px;
+    }
+    .images {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .imgWrapper {
+        width: 33%;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .details {
+      display: flex;
+      gap: 40px;
+
+      .detailsTexts {
+        flex: 3;
+
+        h1 {
+          margin-bottom: 20px;
+        }
+      }
+
+      .detailsPrice {
+        flex: 1;
+        background-color: rgb(210, 228, 254);
+        padding: 20px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        h1 {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        span {
+          font-size: 12px;
+        }
+        h2 > b {
+          font-size: 25px;
+          font-weight: bold;
+        }
+        button {
+          background-color: $button-background;
+          color: white;
+          cursor: pointer;
+          border: none;
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  .slider {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.331);
+
+    flex: 1;
+
+    // position: absolute;
+    z-index: 111;
+
+    .sliderWrapper {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // transition: all 0.8s ease;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      z-index: 555;
+
+      .sliderImg {
+        width: 80%;
+        height: 80vh;
+        object-fit: cover;
+        // transition: all 0.8s ease;
+        // transition: opacity 0.8s linear;
+        // -webkit-transition: all 0.3s ease-in-out;
+        // -moz-transition: all 0.3s ease-in-out;
+        // transition: all 0.3s ease-in-out;
+        z-index: 556;
+      }
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 55px;
+    }
+    .left {
+      position: absolute;
+      left: 10px;
+      top: 45vh;
+      color: white;
+      font-size: 55px;
+      cursor: pointer;
+      z-index: 557;
+    }
+    .right {
+      position: absolute;
+      right: 10px;
+      top: 45vh;
+      color: white;
+      font-size: 55px;
+      cursor: pointer;
+      z-index: 557;
+      background-color: aqua;
+    }
+  }
+}

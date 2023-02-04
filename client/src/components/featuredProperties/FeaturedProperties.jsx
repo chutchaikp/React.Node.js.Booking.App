@@ -1,9 +1,40 @@
+import useFetch from '../../hook/useFetch';
 import './featuredProperties.scss';
 
 const FeaturedProperties = () => {
+  const { data, loading, error } = useFetch('/hotel?featured=true&limit=3');
+  console.log(data);
+
   return (
     <div className="featuredProperties">
-      <div className="item">
+      {loading ? (
+        <div>loading...</div>
+      ) : (
+        <>
+          {data.map((d, idx) => (
+            <div key={idx} className="item">
+              <img
+                src={
+                  d.photos[0] ||
+                  'https://cf.bstatic.com/xdata/images/hotel/square600/13125860.webp?k=e148feeb802ac3d28d1391dad9e4cf1e12d9231f897d0b53ca067bde8a9d3355&o=&s=1'
+                }
+                alt=""
+                className="fpImg"
+              />
+              <span className="name">{d.name}</span>
+              <span className="city">{d.city}</span>
+              <span className="price">Starting from ${d.cheapestPrice}</span>
+              {d.raging && (
+                <div className="rating">
+                  <button>{d?.rating}</button>
+                  <span>Excellent</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </>
+      )}
+      {/* <div className="item">
         <img
           src="https://cf.bstatic.com/xdata/images/hotel/square600/13125860.webp?k=e148feeb802ac3d28d1391dad9e4cf1e12d9231f897d0b53ca067bde8a9d3355&o=&s=1"
           alt=""
@@ -58,7 +89,7 @@ const FeaturedProperties = () => {
           <button>8.9</button>
           <span>Excellent</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
