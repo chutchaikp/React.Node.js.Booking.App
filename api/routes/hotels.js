@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { countByCity, countByType, createHotel, deleteHotel, getHotel, getHotels, promise, updateHotel } from '../controllers/hotel.js';
+import { countByCity, countByType, createHotel, deleteHotel, getHotel, getHotelRooms, getHotels, updateHotel } from '../controllers/hotel.js';
 import { verifyAdmin, verifyUser } from '../utils/verifyToken.js';
 
 const router = Router()
@@ -21,6 +21,11 @@ router.get('/', getHotels)
 
 router.get('/countByCity', countByCity)
 router.get('/countByType', countByType)
+router.get('/room/getHotelRoom/:id', getHotelRooms);
+
+// router.get('/room/getHotelRoom', (req, res) => {
+// 	res.send('hello 2')
+// })
 
 // router.get('/promise', promise)
 
