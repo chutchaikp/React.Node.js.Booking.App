@@ -1,0 +1,32 @@
+.sitebar {
+  // flex: 2;
+  width: 333px;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .title {
+    margin: 20px;
+    text-transform: uppercase;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    li {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      text-transform: capitalize;
+
+      svg {
+        fill: turquoise;
+      }
+    }
+  }
+}

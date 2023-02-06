@@ -1,0 +1,53 @@
+.sort {
+  padding: 10px 200px;
+
+  table {
+    width: 100%;
+
+    flex-direction: column;
+
+    tr {
+      td {
+        flex: 1;
+        // border: 1px solid blue;
+        padding: 15px 0;
+        border-bottom: 1px solid lightgray;
+      }
+
+      td.title {
+        flex: 1;
+        font-weight: bold;
+        text-transform: capitalize;
+
+        .titleColumn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-right: 20px;
+          cursor: pointer;
+
+          &::after {
+            content: ' | ';
+            color: lightgray;
+          }
+
+          .wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .arrow {
+              opacity: 0;
+            }
+            .columnName:hover + .arrow {
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.user.error {
+  color: red;
+}

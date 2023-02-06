@@ -1,0 +1,29 @@
+.sort {
+  display: flex;
+  justify-content: center;
+
+  .wrapper {
+    width: 800px;
+    display: flex;
+    gap: 50px;
+
+    .item2 {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      // background-color: turquoise;
+
+      .title {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &:hover {
+          background-color: rgb(242, 241, 241);
+        }
+      }
+    }
+  }
+}

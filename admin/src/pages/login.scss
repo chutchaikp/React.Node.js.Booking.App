@@ -1,0 +1,31 @@
+.login {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    width: 444px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    input {
+      border: none;
+      border-bottom: 1px solid lightgray;
+      padding: 10px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      margin-top: 20px;
+      border: none;
+      color: white;
+      background-color: turquoise;
+    }
+  }
+}

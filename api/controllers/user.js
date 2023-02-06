@@ -40,6 +40,16 @@ export const deleteUser = async (req, res, next) => {
 	}
 }
 
+export const deleteUserByUsername = async (req, res, next) => {
+	try {
+		const { username } = req.params
+		await User.findOneAndDelete({ username })
+		res.status(200).json(`User ${username} has been removed!`)
+	} catch (error) {
+		next(error)
+	}
+}
+
 export const getUser = async (req, res, next) => {
 	try {
 		const { id } = req.params

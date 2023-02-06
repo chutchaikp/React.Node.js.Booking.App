@@ -6,13 +6,14 @@ import createError from '../utils/createError.js'
 
 export const register = async (req, res, next) => {
 	try {
-		const { username, email, password, } = req.body
+		const { username, email, password, isAdmin, } = req.body
 		const salt = await bcryptjs.genSalt(10);
 		const hashedPassword = await bcryptjs.hash(password, salt)
 		const user = new User({
 			username,
 			email,
 			password: hashedPassword,
+			isAdmin,
 		})
 		const newUser = await user.save();
 		res.status(200).json(newUser)
@@ -34,6 +35,9 @@ export const login = async (req, res, next) => {
 			return next(createError(400, 'Wrong password!'))
 		}
 
+		// return jwt.sign({ id: user.id, isAdmin: user.isAdmin }, "mySecretKey", {
+		// 	expiresIn: "5s",
+		// });
 		const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT)
 
 		const { password, isAdmin, ...other } = user._doc;
