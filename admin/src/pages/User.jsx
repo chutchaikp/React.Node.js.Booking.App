@@ -1,64 +1,154 @@
-import { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SortArrow from '../components/SortArrow';
 import useFetch from '../hook/useFetch';
+
 import './user.scss';
+
 const User = () => {
-  const { data, loading, error } = useFetch(`/user`);
-  // const [columns, setColumns] = useState([]);
-  let columns = [];
-  let customData = [];
+  const navigate = useNavigate();
+  const [customData, setCustomData] = useState([]);
+  const [sort, setSort] = useState({ by: 'id', direction: 'a' });
+  const [columns, setColumns] = useState([]);
 
-  console.log(data);
+  const { data, loading, error } = useFetch('/user');
 
-  if (!data || data.length === 0) {
-    return <>...</>;
-  } else {
-    // other
-    customData = data.map((d) => {
-      const { _id, password, createdAt, updatedAt, ...other } = d;
-      return { ...other };
-    });
+  useEffect(() => {
+    try {
+      if (data && data.length > 0) {
+        const res = data.map((d) => {
+          const { _id, password, createdAt, updatedAt, __v, ...other } = d;
+          return { ...other, isAdmin: other.isAdmin ? 'admin' : 'user' };
+        });
 
-    customData = customData.map((d) => {
-      return { ...d, isAdmin: d.isAdmin ? 'ADMIN' : 'NOT ADMIN' };
-    });
+        const cols = Object.keys(res[0]);
+        setColumns(cols);
+        setCustomData(res);
+      }
+    } catch (error) {
+      throw error;
+    }
+  }, [data]);
 
+  const handleSort = (by) => {
+    try {
+      let sortDirection = 'a';
+      if (sort && sort.by === by) {
+        sortDirection = sort.direction === 'a' ? 'd' : 'a';
+      } else {
+        sortDirection = 'a';
+      }
+      setSort({ by, direction: sortDirection });
+
+      setCustomData((prev) => {
+        const sorted = prev.sort((a, b) => {
+          if (sortDirection === 'a') {
+            return b[by] > a[by] ? -1 : 1;
+          } else {
+            return a[by] > b[by] ? -1 : 1;
+          }
+        });
+        return sorted;
+      });
+    } catch (error) {
+      debugger;
+    }
+  };
+
+  const handleDelete = async (username) => {
+    try {
+      debugger;
+      const res = await axios.delete('/user/username/' + username);
+      console.log('remove', res);
+      setCustomData((prev) => {
+        return prev.filter((o) => o.username !== username);
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  if (error) {
     debugger;
-    const user = customData[0];
-    columns = Object.keys(user);
+    return <>{error.message}</>;
   }
 
   return (
     <div className="user">
-      <h1> User </h1>
-      {loading ? (
-        <>Loading...</>
-      ) : (
-        <div className="data">
+      <div className="header">
+        <h2> User {JSON.stringify(sort)} </h2>
+        <button onClick={() => navigate('/newuser')}>ADD NEW</button>
+      </div>
+
+      {customData && customData.length > 0 ? (
+        <>
           <table>
-            <tr className="header">
-              {Object.keys(customData[0]).map((k, idx) => {
+            <thead>
+              <tr>
+                {columns.map((c) => {
+                  return (
+                    <td className="title" key={'c' + c}>
+                      <div
+                        className="titleColumn"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleSort(c);
+                        }}
+                      >
+                        <div className="wrapper">
+                          <span className="columnName">{c}</span>
+                          <span className={sort?.by === c ? '' : 'arrow'}>
+                            <SortArrow column={c} sort={sort} />
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr>
+            </thead>
+
+            <tbody>
+              {customData.map((u, _idx) => {
                 return (
-                  <td className="title" key={idx}>
-                    {k}
-                  </td>
+                  <tr key={_idx}>
+                    {columns.map((c, idx) => {
+                      const key = 'x' + c + idx;
+                      return (
+                        <td name={key} key={key}>
+                          {u[c]}
+                        </td>
+                      );
+                    })}
+
+                    {/* actions */}
+                    <td>
+                      <button>VIEW</button>
+                    </td>
+                    <td>
+                      <button onClick={() => handleDelete(u.username)}>
+                        DELETE
+                      </button>
+                    </td>
+                  </tr>
                 );
               })}
-            </tr>
+            </tbody>
 
-            {customData.map((r, idx) => {
-              debugger;
-              return (
-                <tr key={'r' + idx}>
-                  {columns.map((c, idx) => {
-                    return <td key={'c' + idx}>{r[c]}</td>;
-                  })}
-                </tr>
-              );
-            })}
+            <tfoot>
+              <tr>
+                <td colSpan={6}>
+                  {JSON.stringify(sort)} - {Date.now().toString()}
+                </td>
+              </tr>
+            </tfoot>
           </table>
-        </div>
+        </>
+      ) : (
+        <>Loading ...</>
       )}
     </div>
   );
 };
-export default User;
+export default React.memo(User);

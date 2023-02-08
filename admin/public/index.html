@@ -9,34 +9,87 @@
 
   <title>Booking Admin</title>
   <style>
+    :root {
+      --text-primary: #1b1b1b;
+      --text-secondary: #4e4e4e;
+      --color-light-grey: #ccc;
+      --font-size-primary: 1.25rem;
+    }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       padding: 0;
       margin: 0;
-      font-size: 1rem;
+      font-size: var(--font-size-primary);
       font-weight: 400;
       text-rendering: optimizeSpeed;
-    }
-
-    /* * {
-      font-family: 'Inter', sans-serif;
-      font-size: 21px;
-      line-height: 1.75;
-      font-weight: 400;
-      text-rendering: optimizeSpeed;
-      color: #202124;
-    }
-
-    body {
-      padding: 0;
-      margin: 0;
-
+      color: var(--text-primary);
     }
 
     h1 {
-      font-size: 48px;
+      font-weight: 400;
+      color: var(--text-primary);
+    }
 
-    } */
+    h2 {
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    input[type="text"],
+    button {
+      font-size: var(--font-size-primary);
+    }
+
+    input,
+    select {
+      height: 40px;
+      border-radius: 4px;
+      box-sizing: border-box;
+      display: block;
+      font-size: 16px;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      width: 100%;
+      height: 40px;
+      border: 1px solid var(--color-light-grey);
+    }
+
+    select {
+      height: inherit;
+    }
+
+    label {
+      display: block;
+      line-height: 2;
+      margin-bottom: 13px;
+      margin-top: 20px;
+      text-align: left;
+      font-size: .9rem;
+    }
+
+    .loading:after {
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: bottom;
+      -webkit-animation: ellipsis steps(4, end) 900ms infinite;
+      animation: ellipsis steps(4, end) 900ms infinite;
+      content: '\2026';
+      /* ascii code for the ellipsis character */
+      width: 0px;
+    }
+
+    @keyframes ellipsis {
+      to {
+        width: 40px;
+      }
+    }
+
+    @-webkit-keyframes ellipsis {
+      to {
+        width: 40px;
+      }
+    }
   </style>
 </head>
 

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import User from "../models/User.js"
 import createError from '../utils/createError.js'
 
-export const register = async (req, res, next) => {
+export const register2 = async (req, res, next) => {
 	try {
 		const { username, email, password, isAdmin, } = req.body
 		const salt = await bcryptjs.genSalt(10);
@@ -14,6 +14,25 @@ export const register = async (req, res, next) => {
 			email,
 			password: hashedPassword,
 			isAdmin,
+		})
+		const newUser = await user.save();
+		res.status(200).json(newUser)
+	} catch (error) {
+		next(error)
+	}
+}
+
+export const register = async (req, res, next) => {
+	try {
+		debugger;
+		console.log({ ...req.body });
+		// const { username, email, password, isAdmin, } = req.body
+		const { password, } = req.body
+		const salt = await bcryptjs.genSalt(10);
+		const hashedPassword = await bcryptjs.hash(password, salt)
+		const user = new User({
+			...req.body,
+			password: hashedPassword,
 		})
 		const newUser = await user.save();
 		res.status(200).json(newUser)

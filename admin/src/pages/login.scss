@@ -12,13 +12,15 @@
     gap: 15px;
 
     input {
-      border: none;
-      border-bottom: 1px solid lightgray;
-      padding: 10px;
+      // border: none;
+      // border-bottom: 1px solid lightgray;
+      // padding: 10px;
+      // padding: 20px 0;
+      // margin: 20px 0;
 
-      &:focus {
-        outline: none;
-      }
+      // &:focus {
+      //   outline: none;
+      // }
     }
 
     button {
@@ -26,6 +28,8 @@
       border: none;
       color: white;
       background-color: turquoise;
+      width: fit-content;
+      padding: 20px 50px;
     }
   }
 }

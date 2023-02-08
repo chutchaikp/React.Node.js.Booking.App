@@ -20,34 +20,40 @@ const UserCreate = () => {
     setFile(e.target.files[0]);
   };
 
-  const create = async () => {
+  const onSubmit = async (user) => {
     try {
-      // debugger;
-      // const data = new FormData();
-      //   data.append("file", file);
-      //   data.append("upload_preset", process.env?.REACT_APP_UPLOAD_PRESET || "upload");
-      // 	data.append('multiple', true)
-      // 	data.append('tags', fileName)
-      // 	data.appendfield('context', `photo=${fileName}`)
-      // const cloudinary_url = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`;
-      // const fileName = file.name;
-      // const uploadRes = await axios.post(
-      // 	cloudinary_url,
-      // 	data
-      // );
-      // const { url } = uploadRes.data;
+      debugger;
+
+      const fileName = file.name;
+      const data = new FormData();
+      data.append('file', file);
+      data.append(
+        'upload_preset',
+        process.env?.REACT_APP_UPLOAD_PRESET || 'upload'
+      );
+      data.append('multiple', true);
+      data.append('tags', fileName);
+      data.append('context', `photo=${fileName}`);
+      const cloudinary_url = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`;
+
+      const uploadRes = await axios.post(cloudinary_url, data);
+      const { url } = uploadRes.data;
+
       // console.log(url);
+      const res = await axios.post('/auth/register', {
+        ...user,
+        img: url,
+        isAdmin: true,
+      });
+      console.log(res.data);
     } catch (error) {
       debugger;
     }
   };
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
-  };
 
   return (
     <div className="userCreate">
-      <h1> Add New User </h1>
+      <h1> Add New User</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="wrapper">
@@ -85,40 +91,56 @@ const UserCreate = () => {
                 className={errors.email ? 'error' : ''}
                 {...register('email', { required: true })}
                 type="text"
-                name="email"
               />
             </div>
             <div className="formInput">
               <label htmlFor="">Password</label>
-              <input type="text" name="password" />
+              <input
+                type="text"
+                className={errors.password ? 'error' : ''}
+                {...register('password', { required: true })}
+              />
             </div>
             <div className="formInput">
               <label htmlFor="">City</label>
-              <input type="text" name="City" />
+              <input
+                type="text"
+                className={errors.city ? 'error' : ''}
+                {...register('city')}
+              />
             </div>
           </div>
           <div className="right">
             <div className="formInput">
               <label htmlFor="">Username</label>
-              <input type="text" name="username" />
+              <input
+                type="text"
+                className={errors.username ? 'error' : ''}
+                {...register('username', { required: true })}
+              />
             </div>
 
             <div className="formInput">
               <label htmlFor="">Phone</label>
-              <input type="text" name="phone" />
+              <input
+                type="text"
+                className={errors.phone ? 'error' : ''}
+                {...register('phone')}
+              />
             </div>
 
             <div className="formInput">
               <label htmlFor="">Country</label>
-              <input type="text" name="country" />
-            </div>
-
-            <div className="btn">
-              <button>SEND</button>
-
-              <input type="submit" value={'hello'} />
+              <input
+                type="text"
+                className={errors.country ? 'error' : ''}
+                {...register('country')}
+              />
             </div>
           </div>
+        </div>
+        <div className="btn">
+          <input type="submit" value={'CREATE'} />
         </div>
       </form>
     </div>

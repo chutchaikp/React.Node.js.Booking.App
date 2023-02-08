@@ -1,4 +1,4 @@
-.user {
+.room {
   padding: 10px 50px;
   flex: 5;
 
@@ -10,10 +10,12 @@
 
   table {
     width: 100%;
+    border: none;
 
     flex-direction: column;
 
     tr {
+      transition: all 0.5 ease;
       td {
         flex: 1;
         // border: 1px solid blue;
@@ -53,8 +55,12 @@
         }
       }
     }
+    tr:hover {
+      background-color: rgb(243, 243, 243);
+    }
   }
 }
-.user.error {
-  color: red;
+
+.hide {
+  display: none;
 }

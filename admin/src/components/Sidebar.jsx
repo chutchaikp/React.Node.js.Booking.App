@@ -12,33 +12,42 @@ import { FcStatistics } from 'react-icons/fc';
 
 import { DiProlog } from 'react-icons/di';
 
-import './sitebar.scss';
-const Sitebar = () => {
+import './sidebar.scss';
+import { Link } from 'react-router-dom';
+const Sidebar = () => {
   return (
-    <div className="sitebar">
-      <h1 className="logo"> Sitebar </h1>
+    <div className="sidebar">
+      <h1 className="logo"> Sidebar </h1>
 
       <div className="title">Main</div>
       <ul>
         <li>
-          <MdDashboard />
-          Dashboard
+          <Link to="/">
+            <MdDashboard />
+            Dashboard
+          </Link>
         </li>
       </ul>
 
       <div className="title">lists</div>
       <ul>
         <li>
-          <FaUserAstronaut />
-          Users
+          <Link to="/user">
+            <FaUserAstronaut />
+            Users
+          </Link>
         </li>
         <li>
-          <FaProductHunt />
-          Products
+          <Link to="/hotel">
+            <FaProductHunt />
+            Hotel
+          </Link>
         </li>
         <li>
-          <FaJediOrder />
-          Orders
+          <Link to="/room">
+            <FaJediOrder />
+            Room
+          </Link>
         </li>
         <li>
           <MdDeliveryDining />
@@ -93,4 +102,4 @@ const Sitebar = () => {
     </div>
   );
 };
-export default Sitebar;
+export default Sidebar;
